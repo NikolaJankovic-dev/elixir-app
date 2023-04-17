@@ -1,0 +1,41 @@
+.elixir {
+  width: 80%;
+  margin: 10vh auto;
+  display: flex;
+  justify-content: space-between;
+  img {
+    width: 30%;
+    // border: 1px solid black;
+  }
+}
+.table {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 60%;
+
+  div {
+    border-bottom: 1px solid black;
+    padding: 10px;
+  }
+ 
+  div:nth-last-child(-n + 1),
+  div:nth-last-child(-n + 2) {
+    // background-color: #310f0f;
+    border-bottom: 0px solid black;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+  }
+}
+.type1 {
+    background-color: rgb(196, 214, 0);
+    border-bottom: 0px solid black;
+}
+.type2 {
+    background-color: rgb(4, 106, 56);
+    border-bottom: 0px solid black;
+}
+.type3 {
+    background-color: rgb(255, 130, 0);
+    border-bottom: 0px solid black;
+}
