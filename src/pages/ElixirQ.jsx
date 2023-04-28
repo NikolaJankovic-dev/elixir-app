@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import style from "./Elixir.module.css";
+import { getItem } from "../getters/getters";
 
 const queryClient = new QueryClient();
 
@@ -15,10 +16,8 @@ export default function ElixirQ() {
 
 function Example() {
   const params = useParams();
-  const { isLoading, error, data } = useQuery("repoData", () =>
-    fetch(`http://localhost:1337/api/items/${params.id}?populate=*`).then(
-      (res) => res.json()
-    )
+  const { isLoading, error, data } = useQuery(["repoData", params.id], () =>
+    getItem(params.id)
   );
 
   if (isLoading) return "Loading...";
@@ -32,7 +31,7 @@ function Example() {
     <div>
       <Navbar />
       <div className={style.elixir}>
-        <img src={`http://localhost:1337${img}`} alt="elixir" />
+        <img src={`https://elixir-strapi.4bees.io${img}`} alt="elixir" />
         <div className={style.table}>
           <div
             className={
@@ -45,7 +44,17 @@ function Example() {
           >
             NAZIV
           </div>
-          <div className={style.type1}>{item.name}</div>
+          <div
+            className={
+              item.type === 1
+                ? style.type1
+                : item.type === 2
+                ? style.type2
+                : style.type3
+            }
+          >
+            {item.name}
+          </div>
           <div>TIP SIROVINE</div>
           <div>ALTERNATIVNA SIROVINA</div>
           <div>ALTERNATIVA ZA</div>
