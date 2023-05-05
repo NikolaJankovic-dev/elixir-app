@@ -98,7 +98,9 @@ const Login = () => {
             />
           </Box>
         </Box>
-        <Button variant="contained" onPointerDown={handleLogin}>
+        <Button variant="contained" onPointerDown={handleLogin}
+        sx={{ bgcolor: "#3A673C",}}
+        >
           Login
         </Button>
       </Box>

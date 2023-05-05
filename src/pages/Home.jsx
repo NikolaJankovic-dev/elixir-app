@@ -59,13 +59,13 @@ const Home = ({ loggedIn }) => {
   };
 
   const types = [
-    { value: 1, name: "Osnovna sirovina" },
-    { value: 2, name: "Pomoćna sirovina" },
-    { value: 3, name: "Alternativna sirovina" },
-    { value: 4, name: "Basic" },
-    { value: 5, name: "Supreme" },
-    { value: 6, name: "Premium" },
-    { value: 7, name: "MicroGran" },
+    { value: 1, name: "Makro" },
+    { value: 2, name: "Mikro" },
+    { value: 3, name: "Basic" },
+    { value: 4, name: "Supreme" },
+    { value: 5, name: "Premium" },
+    { value: 6, name: "MicroGran" },
+    { value: 7, name: "Alternativne sirovine" },
   ];
 
   return (
@@ -150,6 +150,9 @@ const Home = ({ loggedIn }) => {
               </Box>
               <Button type="submit"
               variant="contained"
+              sx={{
+                bgcolor: "#3A673C",
+              }}
               onClick={handleSubmit}>
                 Dodaj
               </Button>

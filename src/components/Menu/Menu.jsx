@@ -19,13 +19,17 @@ import {
 
 const Menu = ({ open, setOpen, loggedIn, setDialog, count }) => {
   const [data, setData] = useState([]);
-  const [type1open, setType1Open] = useState(false);
-  const [type2open, setType2Open] = useState(false);
-  const [type3open, setType3Open] = useState(false);
-  const [type4open, setType4Open] = useState(false);
-  const [type5open, setType5Open] = useState(false);
-  const [type6open, setType6Open] = useState(false);
-  const [type7open, setType7Open] = useState(false);
+  const [standardneOpen, setStandardneOpen] = useState(false);
+  const [makroOpen, setMakroOpen] = useState(false);
+  const [mikroOpen, setMikroOpen] = useState(false);
+
+  const [proizvodiOpen, setProizvodiOpen] = useState(false);
+  const [basicOpen, setBasicOpen] = useState(false);
+  const [supremeOpen, setSupremeOpen] = useState(false);
+  const [premiumOpen, setPremiumOpen] = useState(false);
+  const [microGranOpen, setMicroGranOpen] = useState(false);
+
+  const [alternativeOpen, setAlternativeOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -42,43 +46,43 @@ const Menu = ({ open, setOpen, loggedIn, setDialog, count }) => {
     });
   }, [count]);
 
-  const itemsType1 = useMemo(() => {
+  const itemsTypeMakro = useMemo(() => {
     if (data) {
       return data.filter((item) => item.attributes.type === 1);
     }
   }, [data]);
 
-  const itemsType2 = useMemo(() => {
+  const itemsTypeMikro = useMemo(() => {
     if (data) {
       return data.filter((item) => item.attributes.type === 2);
     }
   }, [data]);
 
-  const itemsType3 = useMemo(() => {
+  const itemsTypeBasic = useMemo(() => {
     if (data) {
       return data.filter((item) => item.attributes.type === 3);
     }
   }, [data]);
 
-  const itemsType4 = useMemo(() => {
+  const itemsTypeSupreme = useMemo(() => {
     if (data) {
       return data.filter((item) => item.attributes.type === 4);
     }
   }, [data]);
 
-  const itemsType5 = useMemo(() => {
+  const itemsTypePremium = useMemo(() => {
     if (data) {
       return data.filter((item) => item.attributes.type === 5);
     }
   }, [data]);
 
-  const itemsType6 = useMemo(() => {
+  const itemsTypeMicroGran = useMemo(() => {
     if (data) {
       return data.filter((item) => item.attributes.type === 6);
     }
   }, [data]);
 
-  const itemsType7 = useMemo(() => {
+  const itemsTypeAlternative = useMemo(() => {
     if (data) {
       return data.filter((item) => item.attributes.type === 7);
     }
@@ -107,15 +111,177 @@ const Menu = ({ open, setOpen, loggedIn, setDialog, count }) => {
       <List>
         <ListItemButton
           onPointerDown={() => {
-            setType1Open(!type1open);
+            setStandardneOpen(!standardneOpen);
           }}
         >
-          <ListItemText primary="Osnovna sirovina" />
-          {type1open ? <ExpandLess /> : <ExpandMore />}
+          <ListItemText primary="Standardne sirovine" />
+          {standardneOpen ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
-        <Collapse in={type1open} timeout="auto" unmountOnExit>
+        <Collapse in={standardneOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {itemsType1.map((item) => {
+            <ListItemButton
+              onPointerDown={() => {
+                setMakroOpen(!makroOpen);
+              }}
+            >
+              <ListItemText primary="Makro" />
+              {makroOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={makroOpen} timeout="auto" unmountOnExit>
+              {itemsTypeMakro.map((item) => {
+                return (
+                  <ListItemButton
+                    key={item.id}
+                    sx={{ pl: 4 }}
+                    onPointerDown={() => {
+                      navigate(`/item/${item.id}`);
+                    }}
+                  >
+                    {item.attributes.name}
+                  </ListItemButton>
+                );
+              })}
+            </Collapse>
+            <ListItemButton
+              onPointerDown={() => {
+                setMikroOpen(!mikroOpen);
+              }}
+            >
+              <ListItemText primary="Mikro" />
+              {mikroOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={mikroOpen} timeout="auto" unmountOnExit>
+              {itemsTypeMikro.map((item) => {
+                return (
+                  <ListItemButton
+                    key={item.id}
+                    sx={{ pl: 4 }}
+                    onPointerDown={() => {
+                      navigate(`/item/${item.id}`);
+                    }}
+                  >
+                    {item.attributes.name}
+                  </ListItemButton>
+                );
+              })}
+            </Collapse>
+          </List>
+        </Collapse>
+        <ListItemButton
+          onPointerDown={() => {
+            setProizvodiOpen(!proizvodiOpen);
+          }}
+        >
+          <ListItemText primary="Proizvodi" />
+          {proizvodiOpen ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={proizvodiOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton
+              onPointerDown={() => {
+                setBasicOpen(!basicOpen);
+              }}
+            >
+              <ListItemText primary="Basic" />
+              {basicOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={basicOpen} timeout="auto" unmountOnExit>
+              {itemsTypeBasic.map((item) => {
+                return (
+                  <ListItemButton
+                    key={item.id}
+                    sx={{ pl: 4 }}
+                    onPointerDown={() => {
+                      navigate(`/item/${item.id}`);
+                    }}
+                  >
+                    {item.attributes.name}
+                  </ListItemButton>
+                );
+              })}
+            </Collapse>
+            <ListItemButton
+              onPointerDown={() => {
+                setSupremeOpen(!supremeOpen);
+              }}
+            >
+              <ListItemText primary="Supreme" />
+              {supremeOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={supremeOpen} timeout="auto" unmountOnExit>
+              {itemsTypeSupreme.map((item) => {
+                return (
+                  <ListItemButton
+                    key={item.id}
+                    sx={{ pl: 4 }}
+                    onPointerDown={() => {
+                      navigate(`/item/${item.id}`);
+                    }}
+                  >
+                    {item.attributes.name}
+                  </ListItemButton>
+                );
+              })}
+            </Collapse>
+            <ListItemButton
+              onPointerDown={() => {
+                setPremiumOpen(!premiumOpen);
+              }}
+            >
+              <ListItemText primary="Premium" />
+              {premiumOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={premiumOpen} timeout="auto" unmountOnExit>
+              {itemsTypePremium.map((item) => {
+                return (
+                  <ListItemButton
+                    key={item.id}
+                    sx={{ pl: 4 }}
+                    onPointerDown={() => {
+                      navigate(`/item/${item.id}`);
+                    }}
+                  >
+                    {item.attributes.name}
+                  </ListItemButton>
+                );
+              })}
+            </Collapse>
+            <ListItemButton
+              onPointerDown={() => {
+                setMicroGranOpen(!microGranOpen);
+              }}
+            >
+              <ListItemText primary="Micro granul" />
+              {microGranOpen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={microGranOpen} timeout="auto" unmountOnExit>
+              {itemsTypeMicroGran.map((item) => {
+                return (
+                  <ListItemButton
+                    key={item.id}
+                    sx={{ pl: 4 }}
+                    onPointerDown={() => {
+                      navigate(`/item/${item.id}`);
+                    }}
+                  >
+                    {item.attributes.name}
+                  </ListItemButton>
+                );
+              })}
+            </Collapse>
+          </List>
+        </Collapse>
+        <ListItemButton
+          onPointerDown={() => {
+            setAlternativeOpen(!alternativeOpen);
+          }}
+        >
+          <ListItemText primary="Alternativne sirovine" />
+          {alternativeOpen ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={alternativeOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {itemsTypeAlternative.map((item) => {
               return (
                 <ListItemButton
                   key={item.id}
@@ -130,7 +296,8 @@ const Menu = ({ open, setOpen, loggedIn, setDialog, count }) => {
             })}
           </List>
         </Collapse>
-        <ListItemButton
+
+        {/* <ListItemButton
           onPointerDown={() => {
             setType2Open(!type2open);
           }}
@@ -280,25 +447,27 @@ const Menu = ({ open, setOpen, loggedIn, setDialog, count }) => {
               );
             })}
           </List>
-        </Collapse>
+        </Collapse> */}
         {loggedIn && (
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Button
-            onPointerDown={() => setDialog(true)}
-            variant="contained"
+          <Box
             sx={{
-              margin: "0 auto",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
-            Dodaj novi artikal
-          </Button>
-        </Box>)}
+            <Button
+              onPointerDown={() => setDialog(true)}
+              variant="contained"
+              sx={{
+                margin: "0 auto",
+                bgcolor: "#3A673C",
+              }}
+            >
+              Dodaj novi artikal
+            </Button>
+          </Box>
+        )}
       </List>
       <IconButton
         onPointerDown={() => setOpen(false)}
@@ -328,6 +497,7 @@ const Menu = ({ open, setOpen, loggedIn, setDialog, count }) => {
           variant="contained"
           sx={{
             mb: 2,
+            bgcolor: "#3A673C",
           }}
         >
           Logout
@@ -340,6 +510,7 @@ const Menu = ({ open, setOpen, loggedIn, setDialog, count }) => {
           variant="contained"
           sx={{
             mb: 2,
+            bgcolor: "#3A673C",
           }}
         >
           Login

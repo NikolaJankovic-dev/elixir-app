@@ -35,13 +35,13 @@ export default function Item({ loggedIn }) {
   };
 
   const types = [
-    { value: 1, name: "Osnovna sirovina" },
-    { value: 2, name: "Pomoćna sirovina" },
-    { value: 3, name: "Alternativna sirovina" },
-    { value: 4, name: "Basic" },
-    { value: 5, name: "Supreme" },
-    { value: 6, name: "Premium" },
-    { value: 7, name: "MicroGran" },
+    { value: 1, name: "Makro" },
+    { value: 2, name: "Mikro" },
+    { value: 3, name: "Basic" },
+    { value: 4, name: "Supreme" },
+    { value: 5, name: "Premium" },
+    { value: 6, name: "MicroGran" },
+    { value: 7, name: "Alternativne sirovine" },
   ];
 
   const params = useParams();
@@ -83,18 +83,12 @@ export default function Item({ loggedIn }) {
 
   const color = useMemo(() => {
     if (item) {
-      if (item.type === 1) {
+      if (item.type < 3 ) {
         return "rgb(196, 214, 0)";
-      } else if (item.type === 2) {
+      } else if (item.type > 2 && item.type < 5) {
         return "rgb(4, 106, 56)";
-      } else if (item.type === 3) {
+      } else if (item.type > 4 ) {
         return "rgb(255, 130, 0)";
-      } else if (item.type === 4) {
-        return "rgb(180, 100, 250)";
-      } else if (item.type === 5) {
-        return "rgb(150, 200, 200)";
-      } else if (item.type === 6) {
-        return "rgb(100, 150, 200)";
       } else {
         return "rgb(0, 150, 200)";
       }
